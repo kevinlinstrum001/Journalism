@@ -1,0 +1,32 @@
+Journalism/
+├── catalogs/
+│   └── README.md
+├── environments/
+│   ├── las-vegas-new-mexico/
+│   │   ├── dossiers/
+│   │   │   └── README.md
+│   │   ├── images/
+│   │   │   └── README.md
+│   │   ├── investigations/
+│   │   │   └── README.md
+│   │   ├── sources/
+│   │   │   └── README.md
+│   │   ├── stories/
+│   │   │   └── README.md
+│   │   ├── subjects/
+│   │   │   └── README.md
+│   │   └── README.md
+│   └── README.md
+├── images/
+│   └── README.md
+├── schemas/
+│   └── README.md
+├── templates/
+│   ├── investigation-summary-template.md
+│   └── README.md
+├── tools/
+│   └── README.md
+├── build_repository_tree.py
+├── json-viewer.html
+├── README.md
+└── repository-tree.txt
