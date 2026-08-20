@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Journalism JSON Viewer</title>
+  <style>
+    :root { font-family: system-ui, sans-serif; color-scheme: light dark; }
+    body { margin: 0; padding: 1rem; max-width: 1100px; margin-inline: auto; }
+    header { margin-bottom: 1rem; }
+    h1 { margin-bottom: .25rem; }
+    .controls { display: grid; gap: .75rem; grid-template-columns: 1fr; margin-bottom: 1rem; }
+    input[type="text"], textarea, button { font: inherit; }
+    input[type="text"] { width: 100%; box-sizing: border-box; padding: .65rem; }
+    textarea { width: 100%; min-height: 10rem; box-sizing: border-box; padding: .75rem; }
+    button { padding: .6rem .85rem; cursor: pointer; }
+    .buttons { display: flex; flex-wrap: wrap; gap: .5rem; }
+    pre { white-space: pre-wrap; word-break: break-word; padding: 1rem; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); border-radius: .5rem; min-height: 8rem; }
+    .muted { opacity: .7; }
+    .error { color: #b00020; font-weight: 600; }
+    mark { padding: 0 .1em; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Journalism JSON Viewer</h1>
+    <div class="muted">Local, dependency-free viewer for Journalism JSON records and catalogs.</div>
+  </header>
+
+  <section class="controls">
+    <label>
+      Open JSON file
+      <input id="fileInput" type="file" accept="application/json,.json" />
+    </label>
+
+    <label>
+      Paste JSON
+      <textarea id="input" placeholder='{"recordType":"investigation", ...}'></textarea>
+    </label>
+
+    <div class="buttons">
+      <button id="renderBtn" type="button">Render</button>
+      <button id="clearBtn" type="button">Clear</button>
+    </div>
+
+    <label>
+      Find text
+      <input id="search" type="text" placeholder="Search rendered JSON" />
+    </label>
+  </section>
+
+  <div id="status" class="muted">No JSON loaded.</div>
+  <pre id="output"></pre>
+
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const status = document.getElementById('status');
+    const search = document.getElementById('search');
+    const fileInput = document.getElementById('fileInput');
+
+    let renderedText = '';
+
+    function renderJson() {
+      const raw = input.value.trim();
+      if (!raw) {
+        renderedText = '';
+        output.textContent = '';
+        status.textContent = 'No JSON loaded.';
+        status.className = 'muted';
+        return;
+      }
+      try {
+        const parsed = JSON.parse(raw);
+        renderedText = JSON.stringify(parsed, null, 2);
+        output.textContent = renderedText;
+        status.textContent = 'Valid JSON rendered.';
+        status.className = 'muted';
+        applySearch();
+      } catch (err) {
+        renderedText = '';
+        output.textContent = '';
+        status.textContent = 'Invalid JSON: ' + err.message;
+        status.className = 'error';
+      }
+    }
+
+    function applySearch() {
+      const q = search.value;
+      if (!renderedText) return;
+      if (!q) {
+        output.textContent = renderedText;
+        return;
+      }
+      const escaped = renderedText
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+      const safeQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      output.innerHTML = escaped.replace(new RegExp(safeQ, 'gi'), match => `<mark>${match}</mark>`);
+    }
+
+    document.getElementById('renderBtn').addEventListener('click', renderJson);
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      input.value = '';
+      search.value = '';
+      fileInput.value = '';
+      renderJson();
+    });
+    search.addEventListener('input', applySearch);
+
+    fileInput.addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      input.value = await file.text();
+      renderJson();
+    });
+  </script>
+</body>
+</html>
