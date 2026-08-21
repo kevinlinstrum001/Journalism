@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Journalism Systems Model — Working Vocabulary</title>
+  <style>
+    :root {
+      --bg: #f5f1e7;
+      --paper: #fffdf7;
+      --ink: #1f2a2e;
+      --muted: #667277;
+      --line: #d8d0c0;
+      --accent: #235b78;
+      --accent-soft: #e3eef3;
+      --gold: #a77b24;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); }
+    code { font-size: .95em; }
+
+    .wrap {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 56px 0 32px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { margin: 0; font-size: clamp(2.1rem, 6vw, 4.4rem); }
+    h2 { margin-top: 0; font-size: 1.75rem; }
+    h3 { margin-bottom: .4rem; }
+
+    .lede {
+      max-width: 820px;
+      margin: 18px 0 0;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--gold);
+      background: #fff8df;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(245, 241, 231, .96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    nav .wrap {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+
+    nav a {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 650;
+    }
+
+    main { padding: 32px 0 72px; }
+    section { margin: 0 0 56px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .card p { margin-bottom: 0; }
+    .card .kind {
+      color: var(--gold);
+      font-size: .74rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .model {
+      background: #17252c;
+      color: #f4f7f8;
+      padding: 20px;
+      border-radius: 12px;
+      overflow-x: auto;
+      white-space: pre;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .92rem;
+    }
+
+    .small { color: var(--muted); font-size: .92rem; }
+    .tag {
+      display: inline-block;
+      margin: 3px 4px 3px 0;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 650;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+    }
+
+    th, td {
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #eee8db; }
+
+    footer {
+      padding: 28px 0 48px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">Journalism · Experimental Working Page</p>
+      <h1>Systems Model & Vocabulary</h1>
+      <p class="lede">A disposable working surface for developing a language capable of describing Las Vegas, New Mexico: what exists, what happens, how entities relate, how resources move, how information travels, and how conditions change.</p>
+      <div class="notice"><strong>Working rule:</strong> nothing on this page is precious. Terms may be renamed, split, merged, contradicted, or discarded as investigations expose better distinctions.</div>
+    </div>
+  </header>
+
+  <nav aria-label="Page sections">
+    <div class="wrap">
+      <a href="#grammar">Basic grammar</a>
+      <a href="#entities">Entities</a>
+      <a href="#groups">Groups</a>
+      <a href="#occurrences">Occurrences</a>
+      <a href="#resources">Resources & economics</a>
+      <a href="#information">Information flow</a>
+      <a href="#investigation">Investigation loop</a>
+      <a href="#questions">Open questions</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="grammar">
+      <h2>Basic grammar</h2>
+      <p>The current experiment treats the town as a model that can be described with a small set of recurring concepts.</p>
+      <div class="model">ENTITY → VERB / RELATIONSHIP → ENTITY
+
+ENTITY + ACTION + CONTEXT → OCCURRENCE
+
+STATE(before) → OCCURRENCE → STATE(after)
+
+RESOURCES → ACTOR / PROCESS → OUTPUT / SERVICE / STATE EFFECT
+
+SOURCE ARTIFACT → INVESTIGATION → FINDINGS → SYSTEM UPDATES</div>
+    </section>
+
+    <section id="entities">
+      <h2>Entities</h2>
+      <p><strong>Entity</strong> is the broad working term for something with enough independent identity to track. Entity does not imply singularity.</p>
+      <div class="grid">
+        <article class="card"><span class="kind">Entity type</span><h3>Person</h3><p>An individual human. Roles such as mayor, judge, plaintiff, employee, or owner are relationships or contextual roles rather than permanent person types.</p></article>
+        <article class="card"><span class="kind">Entity type</span><h3>Group</h3><p>A collective, formal or informal, that may be tracked because it has identity, association, legal status, collective agency, or analytical significance.</p></article>
+        <article class="card"><span class="kind">Entity type</span><h3>Building / Facility</h3><p>A constructed physical asset whose identity is independent of its occupant, owner, and address.</p></article>
+        <article class="card"><span class="kind">Location concept</span><h3>Address</h3><p>A navigational/location identifier. It may be a field-work destination and should not be collapsed into the building itself.</p></article>
+        <article class="card"><span class="kind">Entity type</span><h3>Place / Geographic Unit</h3><p>A plaza, parcel, neighborhood, precinct, jurisdiction, district, corridor, site, or other independently useful geographic area.</p></article>
+        <article class="card"><span class="kind">Artifact / instrument</span><h3>Governing Instrument</h3><p>A law, ordinance, charter, regulation, contract, policy, resolution, or similar durable artifact that can establish authority, obligations, or organizations.</p></article>
+      </div>
+    </section>
+
+    <section id="groups">
+      <h2>Groups and collective agency</h2>
+      <p>Groups can arise through different mechanisms. The model should not assume that every useful grouping is an organization.</p>
+      <table>
+        <thead><tr><th>Working type</th><th>Basis</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Formal group / organization</td><td>Formalized identity, rules, charter, incorporation, appointment, statute, or other recognized formation process.</td><td>Corporation, agency, board, council.</td></tr>
+          <tr><td>Informal social formation</td><td>Shared identity, position, interest, coordination, or collective action.</td><td>Faction, coalition, community of interest.</td></tr>
+          <tr><td>Legal / procedural grouping</td><td>Common legally recognized relationship to a proceeding or matter.</td><td>Plaintiffs in a case.</td></tr>
+          <tr><td>Derived / relational group</td><td>Computed because members share a relationship to some entity, project, budget, place, or criterion.</td><td>All contractors paid from a particular program.</td></tr>
+          <tr><td>Analyst-defined group</td><td>Created for research because members share a relevant characteristic.</td><td>Businesses within one precinct.</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Possible dimensions to keep separate: collective agency, legal agency, self-identification, formalization, membership, and analyst-defined grouping.</p>
+    </section>
+
+    <section id="occurrences">
+      <h2>Occurrences, states, and change</h2>
+      <div class="grid">
+        <article class="card"><span class="kind">Working term</span><h3>Occurrence</h3><p>Something that happened. It may contain one or many actions and does not require a measurable state effect in something we currently track.</p></article>
+        <article class="card"><span class="kind">Working term</span><h3>State</h3><p>What is true about something at a particular time.</p></article>
+        <article class="card"><span class="kind">Working term</span><h3>State Change</h3><p>A before/after difference that can be observed or measured. An occurrence can cause zero, one, or many tracked state changes.</p></article>
+        <article class="card"><span class="kind">Working term</span><h3>Relationship</h3><p>A typed connection between entities, often expressible as a verb: owns, occupies, operates, represents, funds, employs, serves, regulates.</p></article>
+      </div>
+      <div class="model">USPS → removes → Mailbox 42
+
+Occurrence: mailbox removal
+Before state: Mailbox 42 present at 7th & Mills
+After state: Mailbox 42 absent from 7th & Mills
+
+If the mailbox inventory did not yet exist, the removal occurrence could still be recorded.</div>
+    </section>
+
+    <section id="resources">
+      <h2>Resources and an economic lens</h2>
+      <p>Economics is treated as a powerful interpretive vocabulary over the shared reality model, not as the only way to interpret the town.</p>
+      <div class="model">CONDITION / NEED
+        ↓
+SERVICE REQUIREMENT
+        ↓
+DEMAND / CAPACITY GAP
+        ↓
+RESOURCE ALLOCATION
+        ↓
+PRODUCTION / TRANSFORMATION
+        ↓
+OUTPUT: ASSET / SERVICE / CHANGED CONDITION
+        ↓
+STATE EFFECT</div>
+      <p>
+        <span class="tag">scarcity</span><span class="tag">demand</span><span class="tag">capacity</span><span class="tag">allocation</span><span class="tag">input</span><span class="tag">output</span><span class="tag">labor</span><span class="tag">capital</span><span class="tag">production</span><span class="tag">service</span><span class="tag">expenditure</span><span class="tag">appropriation</span><span class="tag">obligation</span><span class="tag">payment</span><span class="tag">stock</span><span class="tag">flow</span><span class="tag">recurrence</span>
+      </p>
+      <p>A city may address a service requirement through existing employees and assets, by purchasing capacity, by contracting for a service, by changing service levels, or by leaving some need unmet. Money is one resource among labor, equipment, materials, information, time, land, energy, expertise, and administrative capacity.</p>
+    </section>
+
+    <section id="information">
+      <h2>Information and communication</h2>
+      <p>Communication can itself be modeled as action. The same source artifact may provide evidence about its subject and about how information moves through the community.</p>
+      <div class="model">Entity A → produces → Flyer
+Entity B → distributes → Flyer
+Person C → receives → Flyer
+Investigation → analyzes → Flyer
+
+Entity → communicates → content
+                     ↓
+                  channel
+                     ↓
+                 audience</div>
+      <p>Official notices, newspapers, websites, social media, flyers, conversations, arguments, meetings, witness observations, interviews, and secondary transmission can all be relevant when an investigation concerns information flow.</p>
+    </section>
+
+    <section id="investigation">
+      <h2>Investigation as interpretation</h2>
+      <p>A source artifact does not directly become accepted knowledge. A bounded investigation can interpret it, distinguish claims from supported findings, and propose or make controlled changes to the system.</p>
+      <div class="model">SOURCE ARTIFACT
+        ↓
+INVESTIGATION
+  identify entities
+  identify actions / verbs
+  identify claims
+  identify resources
+  identify relationships
+  test state changes
+  preserve uncertainty
+        ↓
+INVESTIGATION SUMMARY
+        ↓
+SYSTEM UPDATES
+        ↓
+DOWNSTREAM NARRATIVE / SYSTEMS SYNTHESIS</div>
+    </section>
+
+    <section id="questions">
+      <h2>Open questions</h2>
+      <p>This page is intentionally unfinished. Some questions already exposed by the model:</p>
+      <div class="grid">
+        <article class="card"><h3>What counts as an entity?</h3><p>When should a recurring activity, project, legal instrument, service, asset, or social formation receive independent identity?</p></article>
+        <article class="card"><h3>When is a group an organization?</h3><p>What minimum evidence establishes formalization, collective agency, legal agency, or continuity?</p></article>
+        <article class="card"><h3>What vocabulary is domain-specific?</h3><p>Which terms belong to economics, government, law, anthropology, communications, operations, or another interpretive lens rather than the neutral core?</p></article>
+        <article class="card"><h3>How should time work?</h3><p>Relationships, states, roles, contracts, budgets, occupations, and memberships can all begin and end.</p></article>
+        <article class="card"><h3>How much resolution is useful?</h3><p>Provenance and relationships can be tracked at very fine granularity, but only when the research question makes that resolution useful.</p></article>
+        <article class="card"><h3>What survives repeated investigations?</h3><p>Recurring concepts should eventually become stable vocabulary and, only later, machine-readable schemas.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Journalism Systems Model · working draft · Las Vegas, New Mexico environment
+    </div>
+  </footer>
+</body>
+</html>
